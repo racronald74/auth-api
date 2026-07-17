@@ -1,6 +1,8 @@
 // IMPORTACIONES
 // Importa las funciones del repositorio de usuarios.
 const userRepository = require("../repositories/userRepository");
+// Importa el servicio encargado de la seguridad de las contraseñas.
+const securityService = require("./securityService");
 
 // FUNCIONES
 /**
@@ -39,8 +41,16 @@ async function registerUser(username, password) {
         throw new Error("El nombre de usuario ya está registrado.");
     }
 
-    // REGISTRAR USUARIO
-        const result = await userRepository.createUser(username, password);
+// GENERAR HASH DE LA CONTRASEÑA
+// Convierte la contraseña en un hash seguro antes de almacenarla.
+const hashedPassword = await securityService.hashPassword(password);
+
+// REGISTRAR USUARIO
+// Guarda el usuario utilizando el hash generado.
+const result = await userRepository.createUser(
+    username,
+    hashedPassword
+);
 
     // Devuelve el resultado al controlador.
     return result;
