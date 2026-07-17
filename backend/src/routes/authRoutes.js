@@ -20,6 +20,11 @@ const authController = require("../controllers/authController");
  */
 router.post("/register", authController.register);
 
+// RUTA PARA INICIAR SESIÓN
+// Recibe las credenciales del usuario y autentica
+// el inicio de sesión.
+router.post("/login", authController.login);
+
 // EXPORTACIONES
 // Exporta el enrutador para que pueda ser utilizado
 // por la aplicación principal (app.js).

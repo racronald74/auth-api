@@ -47,9 +47,46 @@ async function register(req, res) {
 
 }
 
+/**
+ * INICIAR SESIÓN
+ *
+ * Recibe las credenciales enviadas por el cliente,
+ * delega la autenticación al servicio y devuelve
+ * una respuesta HTTP.
+ */
+async function login(req, res) {
+
+    try {
+
+        // OBTENER DATOS DE LA PETICIÓN
+        const { username, password } = req.body;
+
+        // AUTENTICAR USUARIO
+                const user = await authService.loginUser(username, password);
+
+        // RESPUESTA EXITOSA
+                res.status(200).json(
+            response.success(
+                "Inicio de sesión exitoso.",
+                user
+            )
+        );
+
+    } catch (error) {
+
+        // RESPUESTA DE ERROR
+        res.status(401).json(
+        response.error(error.message)
+        );
+
+    }
+
+}
+
 // EXPORTACIONES
 // Exporta las funciones del controlador para que puedan
 // ser utilizadas por las rutas.
 module.exports = {
-    register
+    register,
+    login
 };
