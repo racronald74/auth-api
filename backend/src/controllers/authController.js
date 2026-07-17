@@ -2,6 +2,8 @@
 
 // Importa el servicio de autenticación, encargado de la lógica de negocio.
 const authService = require("../services/authService");
+// Importa las funciones que construyen las respuestas estándar de la API.
+const response = require("../utils/response");
 
 // FUNCIONES
 
@@ -24,22 +26,22 @@ async function register(req, res) {
         const result = await authService.registerUser(username, password);
 
         // Devuelve una respuesta exitosa.
-        res.status(201).json({
-            success: true,
-            message: "Usuario registrado correctamente.",
-            data: {
-                id: result.insertId,
-                username: username
-            }
-        });
+        res.status(201).json(
+    response.success(
+        "Usuario registrado correctamente.",
+        {
+            id: result.insertId,
+            username
+        }
+    )
+);
 
     } catch (error) {
 
-        // Devuelve una respuesta de error.
-        res.status(400).json({
-            success: false,
-            message: error.message
-        });
+    // Devuelve una respuesta de error.
+    res.status(400).json(
+    response.error(error.message)
+);
 
     }
 
