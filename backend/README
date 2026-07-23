@@ -1,0 +1,104 @@
+# API de Autenticación de Usuarios
+
+API REST desarrollada como evidencia **EV01 – Diseño y desarrollo de servicios web** del programa Análisis y Desarrollo de Software del SENA.
+
+## Descripción
+
+Esta API permite realizar el registro e inicio de sesión de usuarios utilizando Node.js, Express y MySQL. Las contraseñas son almacenadas de forma segura mediante la librería bcrypt.
+
+## Tecnologías utilizadas
+
+- Node.js
+- Express.js
+- MySQL
+- mysql2
+- bcrypt
+- dotenv
+- Postman
+- Git
+- GitHub
+
+## Funcionalidades
+
+- Registro de usuarios.
+- Inicio de sesión.
+- Validación de credenciales.
+- Cifrado seguro de contraseñas.
+- Conexión con base de datos MySQL.
+
+## Estructura del proyecto
+
+```text
+src/
+├── controllers/
+├── database/
+├── repositories/
+├── routes/
+├── services/
+├── utils/
+├── app.js
+└── server.js
+```
+
+## Instalación
+
+1. Clonar el repositorio.
+
+```bash
+git clone <URL_DEL_REPOSITORIO>
+```
+
+2. Instalar las dependencias.
+
+```bash
+npm install
+```
+
+3. Configurar el archivo `.env` con los datos de conexión a MySQL.
+
+Ejemplo:
+
+```env
+DB_HOST=localhost
+DB_PORT=3306
+DB_NAME=auth_api
+DB_USER=root
+DB_PASSWORD=tu_contraseña
+PORT=3000
+```
+
+4. Iniciar el servidor.
+
+```bash
+npm start
+```
+
+o
+
+```bash
+npm run dev
+```
+
+## Endpoints
+
+### Registro
+
+```http
+POST /api/auth/register
+```
+
+### Inicio de sesión
+
+```http
+POST /api/auth/login
+```
+
+## Pruebas
+
+Las pruebas de funcionamiento se realizaron utilizando Postman, verificando los servicios de registro e inicio de sesión, así como los diferentes escenarios de validación.
+
+## Autor
+
+**Ronald Arenas**
+
+Proyecto desarrollado como evidencia académica del programa **Análisis y Desarrollo de Software** del SENA.
